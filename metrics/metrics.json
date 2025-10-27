@@ -1,0 +1,24 @@
+{
+  "timestamp": 1761046768.933636,
+  "tokens_prompt": 148,
+  "tokens_completion": 66,
+  "total_tokens": 214,
+  "latency_ms": 8322.716474533081,
+  "estimated_cost_usd": 6.18e-05
+}
+{
+  "timestamp": 1761047169.3753095,
+  "tokens_prompt": 142,
+  "tokens_completion": 56,
+  "total_tokens": 198,
+  "latency_ms": 8951.364278793335,
+  "estimated_cost_usd": 5.5e-05
+}
+{
+  "timestamp": 1761049025,
+  "tokens_prompt": 144,
+  "tokens_completion": 50,
+  "total_tokens": 194,
+  "latency_ms": 2834.42,
+  "estimated_cost_usd": 5.2e-05
+}
