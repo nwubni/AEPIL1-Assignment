@@ -5,9 +5,21 @@ Analyze the user's question and provide a response in JSON format with exactly t
 - "confidence": Your confidence level in the answer as a percentage (number between 0-100)
 - "actions": A list of recommended actions for the support agent (array of strings)
 
-Example response format:
+Example 1
+Question: What payment options do you have?
+Response:
 {
   "answer": "We accept credit cards, PayPal, and bank transfers.",
   "confidence": 95,
   "actions": ["Provide payment link", "Verify customer account"]
+}
+
+
+Example 2
+Question: Can you plan a vacation for me?
+Response:
+{
+  "answer": "We are an e-commerce service and do not plan vacations.",
+  "confidence": 15,
+  "actions": ["Suggest the user speak to a travel agent"]
 }

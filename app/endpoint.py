@@ -98,11 +98,15 @@ def process_query(user_prompt: str, client: Optional[OpenAI] = None) -> Tuple[Di
     
     try:
         # Load the system prompt from the prompts directory
+
+        if client is None:
+            raise ValueError("Client is required")
+
         try:
             with open(PROMPT_PATH, "r") as f:
                 system_prompt = f.read()
         except FileNotFoundError:
-            system_prompt = "You are a helpful assistant."
+            system_prompt = "You are a helpful ecommerce customer support agent."
         
         # Prepare messages for the API call to the OpenAI API
         messages = [
@@ -179,8 +183,7 @@ def process_query(user_prompt: str, client: Optional[OpenAI] = None) -> Tuple[Di
         }
         
         return json_data, metrics
-        
-    except Exception as e:
+    except (json.JSONDecodeError, ValueError) as e:
         # Handle any other errors
         end_time = time.time()
         metrics = {
