@@ -37,7 +37,7 @@ The moderation approach is enforced at the ingress and egress gates. At the ingr
 
 **Metrics:**
 ```json
-Metrics: {
+{
   "model": "safety_check",
   "prompt_tokens": 0,
   "completion_tokens": 0,
