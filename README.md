@@ -1,23 +1,94 @@
 # AEPIL1-Assignment
+
 Andela GenAI First Assignment
-This repo provides the a simple way for an ecommerce service to utilize AI to query their customer service for complaints and get answers.
-The purpose is to reduce the time spent attending to customer complaint and improve customer experience.
 
-Project Setup Instructions
+This repository provides a simple way for an e-commerce service to utilize AI to query their customer service for complaints and get answers. The purpose is to reduce the time spent attending to customer complaints and improve customer experience.
+
+## Project Setup Instructions
+
 1. Open your command terminal
-2. Clone the repo in your directory of choice by running the git command `git clone https://github.com/nwubni/AEPIL1-Assignment.git`
-3. Next, run `cd AEPIL1-Assignment` to change into the project's root directory.
-4. Next, create a virtual environment to isolate the project's dependencies by running `python3 -m venv .venv`. After creating the virtual evironment, activate it with the following command `source .venv/bin/activate`
-4. Next, run `pip install -r requirements.txt` to install the dependencies. The dependencies include openai to use OpenAI models to process user prompts.
+2. Clone the repository in your directory of choice by running the git command:
+   ```bash
+   git clone https://github.com/nwubni/AEPIL1-Assignment.git
+   ```
+3. Change into the project's root directory:
+   ```bash
+   cd AEPIL1-Assignment
+   ```
+4. Create a virtual environment to isolate the project's dependencies:
+   ```bash
+   python3 -m venv .venv
+   ```
+5. Activate the virtual environment:
+   ```bash
+   source .venv/bin/activate
+   ```
+6. Install the dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   The dependencies include OpenAI to use OpenAI models to process user prompts.
 
-Running the application
-Here is the format for running the application:
-`python3 app/endpoint.py query`
-Example `python3 app/endpoint.py "What payment options do you have?"`
+## Environment Variables
 
+This project requires an OpenAI API key to function. Create a `.env` file in the project root directory and add:
+```
+OPENAI_API_KEY=your_api_key_here
+```
 
-Setup, environment variables, run commands, how to reproduce metrics, known limitations.
+## Running the Application
 
+Format for running the application:
+```bash
+python -m app.endpoint "Your query here"
+```
 
-Testing
-- Uses Pytest
+Example:
+```bash
+python -m app.endpoint "What payment options do you have?"
+```
+
+## Testing
+
+This assignment uses Pytest to validate the functionalities of the e-commerce customer agent program. The tests are located in the `tests/test_core.py` file.
+
+The tests cover:
+- Profanity filter
+- Safety checker
+- End-to-end flow
+- Cost calculation
+- Response validation
+- Process query
+- Full flow
+
+To run the tests:
+```bash
+python -m pytest
+```
+
+## Reproducing Metrics
+
+Metrics are automatically logged to `metrics/metrics.json` when running queries that generate API costs. The metrics file contains:
+- Model used
+- Timestamp
+- Token usage (prompt, completion, total)
+- Latency in milliseconds
+- Estimated cost in USD
+
+To view logged metrics:
+```bash
+cat metrics/metrics.json
+```
+
+## Known Limitations
+
+### Metrics and Logging
+- **Metrics logging**: Metrics are only logged when `estimated_cost_usd > 0`. Failed queries or safety-checked queries (with 0 cost) are not logged.
+
+### Error Handling
+- **API key validation**: If the API key is missing or invalid, the error may not be clearly communicated to the user until an API call is attempted.
+- **Fallback mechanism**: When JSON parsing fails, the system makes an additional API call to fix the JSON, which doubles the cost and latency for those cases.
+
+### Security and Moderation
+- **Rate limiting**: There is no rate limiting implemented to prevent API abuse or excessive usage.
